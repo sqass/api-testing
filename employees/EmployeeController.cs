@@ -129,6 +129,27 @@ public class EmployeeController : ControllerBase
         return NoContent();
     }
 
+    // GET: api/Employee/ByState?state={state}
+    [HttpGet("ByState")]
+    public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeesByState([FromQuery] string state)
+    {
+        if (string.IsNullOrWhiteSpace(state))
+        {
+            return BadRequest("State parameter is required.");
+        }
+
+        var employees = await _context.EmployeeDetails
+            .Where(e => e.State.Equals(state))
+            .ToListAsync();
+
+        if (employees == null || !employees.Any())
+        {
+            return NotFound();
+        }
+
+        return employees;
+    }
+
     private bool EmployeeExists(int id)
     {
         return _context.EmployeeDetails.Any(e => e.EmployeeID == id);
