@@ -11,22 +11,28 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var mySqlConnectionBuilder = new MySqlConnectionStringBuilder()
+bool enableDb = true;
+if (enableDb)
 {
-    Server = "127.0.0.1", //"localhost",//"127.0.0.1",
-    Database = "employee",
-    UserID = "root",
-    Password = "password123",
-    Port = 3306
-};
+    var mySqlConnectionBuilder = new MySqlConnectionStringBuilder()
+    {
+        Server = "127.0.0.1", //"localhost",//"127.0.0.1",
+        Database = "employee",
+        UserID = "user",
+        Password = "password",
+        Port = 3306
+    };
 
-var connectionString = "Server=localhost;Port=3306;Database=stocks;UserID=root;Pwd=password123;";
+    var connectionString = "Server=localhost;Port=3306;Database=employee;UserID=user;Pwd=password;";
 
-var serverVersion = ServerVersion.AutoDetect(mySqlConnectionBuilder.ConnectionString);
+    var serverVersion = ServerVersion.AutoDetect(mySqlConnectionBuilder.ConnectionString);
 
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(mySqlConnectionBuilder.ConnectionString, serverVersion));
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseMySql(mySqlConnectionBuilder.ConnectionString, serverVersion));
+
+}
+
 
 
 
