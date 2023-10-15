@@ -1,69 +1,127 @@
 # Software needed
 
- 1. [dotnet ](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
- 2. [postman](https://www.postman.com/downloads/)
- 3. [docker](https://www.docker.com/products/docker-desktop/)
- 4. [my sql](https://dev.mysql.com/downloads/workbench)
+1. [postman](https://www.postman.com/downloads/)
+2. [docker](https://www.docker.com/products/docker-desktop/)
+3. [my sql](https://dev.mysql.com/downloads/workbench)
 
 
-# Creating the database
+# Running the application
 
-1. Run the command `docker run -d -p 3306:3306 --name employee-mysql -e MYSQL_ROOT_PASSWORD=password123 -e MYSQL_DATABASE=employee mysql:latest' from your terminal/bash
-2. Open mysql workbench
-3. Click on create new connection
-4. Enter the details as shown in below screenshot with password as `password123`
-![image](https://github.com/bhargavjulaganti/Stocks/assets/11901773/236e5d5b-2658-4d52-b654-c635dabce85e)
+1. Clone the repo [api-testing](https://github.com/sqass/api-testing.git)
+2. Go to root directory of the project from your terminal
+3. Run `docker-compose up` . You should see something like this
+    <img width="1141" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/c9ec7f13-2616-4bc3-83c4-93e20d6451d4">
+4. Open mysql workbench
+5. Click on create new connection
+4. Enter the details as shown in below screenshot with user as `user123` and password as `password1234`
+<img width="900" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/239c7f1f-087e-481c-9b58-fa568578099f">
 5. Click on test connection, the connection to the database should be successful.
 6. Double click on the newly created database
 7. Click on create new query session
-8. Run the create table query as shown below 
+8. Run the below select query, should see a record on the table 
 ```sql
-USE employee;
-CREATE TABLE EmployeeDetails (
-    EmployeeID INT ,
-    FirstName VARCHAR(100),
-	LastName VARCHAR(100),
-    Age INT,
-    State VARCHAR(2)
-);
-```
-9. Run the below query to see whether the table is created or not. You should get table with empty records
-``` sql
-SELECT * FROM EmployeeDetails
+SELECT * FROM employee.EmployeeDetails;
 ```
 
-# Running the api
-
-1. Navigate to employees directory with command `cd employees`
-2. run the command `dotnet run`
-3. The api should be up and running on the localhost ports `https://localhost:7071;http://localhost:5163`
+<img width="1143" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/eb73a058-f083-4145-ac52-67746c0498e6">
 
 # Testing the api using postman
 
-1. Create a GET request (https://localhost:7071/api/employee/1). You should see response status code 404
-2. Create a POST request (https://localhost:7071/api/employee). with below body, should see success response 201
+### Create your first GET request
 
+- Create a GET srequest to read the details of EmployeeId `1`
+
+`RequestUrl` : http://127.0.0.1:7174/api/employee/1
+
+`HttpMethod` : GET
+
+
+<img width="1301" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/ad29ec92-0cb6-4baf-a9f0-03e46371ef5b">
+
+### Create your first POST request 
+
+- Create a POST request to create new employee details, see the below screenshot for example
+
+`RequestUrl` : http://127.0.0.1:7174/api/employee
+
+`HttpMethod`: POST
+
+`RequestBody`: 
 ```json
 {
-    "EmployeeID": 1,
-    "FirstName": "John",
-    "LastName": "Doe",
+    "EmployeeID": 2,
+    "FirstName": "James",
+    "LastName": "sad",
     "Age": 30,
-    "State": "NJ"
+    "State": "MI"
 }
 ```
-3. Now hit the get request with employeeID (https://localhost:7071/api/employee/1), should see response code 200.
-4. Lets try to update the employee state with "NY" , with put request below body
+<img width="1290" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/6bb62199-a480-4d93-b68c-59def91cc116">
 
+
+### Create your first PUT request 
+
+Let's update the State of the newly created employee to `IL`. For this we need to create a PUT request request
+
+`RequestUrl` : http://127.0.0.1:7174/api/employee/2`
+
+`HttpMethod`: PUT
+
+`RequestBody`: 
 ```json
 {
-    "EmployeeID": 1,
-    "FirstName": "John",
-    "LastName": "Doe",
+    "EmployeeID": 2,
+    "FirstName": "James",
+    "LastName": "sad",
+    "Age": 30,
+    "State": "IL"
+}
+```
+
+<img width="1295" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/8ea90027-feec-476b-aa4f-fd470bbdf5b4">
+
+### Create your first PATCH request 
+
+Let's update again the state of employee 2 from `IL` to `NY`. For this we will be using PATCH request.
+
+You might be wondering, whats the difference between PUT and PATCH. In Patch request, we do not send entire request body details. We only send what are required
+
+`RequestUrl` : http://127.0.0.1:7174/api/employee/2
+
+`HttpMethod`: PATCH
+request Body: 
+```json
+{
+    "EmployeeID": 2,
+    "FirstName": "James",
+    "LastName": "sad",
     "Age": 30,
     "State": "NY"
 }
 ```
-5. Now hit the get request , you will see state is updated to NY
+<img width="1297" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/c34795f0-fdcc-44f8-9c74-1f9c45003453">
+
+### Create your first DELETE request
+
+We can incur by the name, if you want to delete a record then we use DELETE request.
+
+`RequestUrl` : http://127.0.0.1:7174/api/employee/2
+
+`HttpMethod`: DELETE
+
+<img width="1313" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/78bedab9-6239-4f25-9a1b-a9fe10d921e2">
+
+### What are Request Parameters in postman ?
+
+Let's say in our example, we want to find the details of the employees who's state is `NJ`
+
+For this we need to pass the state to the request, that's where request parameters will come in place.
+
+`RequestUrl` : http://localhost:7174/api/employee/ByState
+`RequestParams` : State
+`HttpMethod` : GET
+
+<img width="1301" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/95bdd032-69e4-4ef7-8814-593ca387e390">
+
 
 

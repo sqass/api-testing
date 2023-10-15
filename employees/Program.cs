@@ -11,30 +11,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-bool enableDb = true;
-if (enableDb)
+
+var mySqlConnectionBuilder = new MySqlConnectionStringBuilder()
 {
-    var mySqlConnectionBuilder = new MySqlConnectionStringBuilder()
-    {
-        Server = "127.0.0.1", //"localhost",//"127.0.0.1",
-        Database = "employee",
-        UserID = "user",
-        Password = "password",
-        Port = 3306
-    };
+    Server = "mysql", //host.docker.internal", //"localhost",//"127.0.0.1",
+    Database = "employee",
+    UserID = "user123",
+    Password = "password1234",
+    Port = 3306
+};
 
-    var connectionString = "Server=localhost;Port=3306;Database=employee;UserID=user;Pwd=password;";
-
-    var serverVersion = ServerVersion.AutoDetect(mySqlConnectionBuilder.ConnectionString);
+var serverVersion = ServerVersion.AutoDetect(mySqlConnectionBuilder.ConnectionString);
 
 
-    builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseMySql(mySqlConnectionBuilder.ConnectionString, serverVersion));
-
-}
-
-
-
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(mySqlConnectionBuilder.ConnectionString, serverVersion));
 
 var app = builder.Build();
 

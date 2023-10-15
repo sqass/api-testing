@@ -15,4 +15,4 @@ EXPOSE 80
 
 COPY --from=publish /app/publish .
 
-# ENTRYPOINT [ "dotnet", "employees.dll"]
+ENTRYPOINT ["dotnet", "employees.dll"]

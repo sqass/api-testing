@@ -1,18 +1,33 @@
 version: '3.3'
 services:
+
+  webapi:
+    build:
+      context: ./employees
+      dockerfile: Dockerfile
+    container_name: employees_container
+    ports:
+      - "7174:80"
+    depends_on:
+      mysql: 
+        condition: service_healthy 
   mysql:
     image: mysql:5.7
     restart: always
+    container_name: 'mysql'
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
     environment:
       MYSQL_DATABASE: 'employee'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_USER: 'root'
       MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_USER: 'user123'
+      MYSQL_PASSWORD: 'password1234'
     ports:
       - '3306:3306'
     expose:
       - '3306'
     volumes:
-      # - my-db:/var/lib/mysql
-      # - "./init.sql:/docker-entrypoint-initdb.d/1.sql"
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
