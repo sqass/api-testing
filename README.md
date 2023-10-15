@@ -119,7 +119,9 @@ Let's say in our example, we want to find the details of the employees who's sta
 For this we need to pass the state to the request, that's where request parameters will come in place.
 
 `RequestUrl` : http://localhost:7174/api/employee/ByState
+
 `RequestParams` : State
+
 `HttpMethod` : GET
 
 <img width="1301" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/95bdd032-69e4-4ef7-8814-593ca387e390">
