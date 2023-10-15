@@ -1,3 +1,7 @@
+# Application details
+
+A simple .NET Web API application to practice API testing in Postman, helping you gain hands-on experience with API requests and responses.
+
 # Software needed
 
 1. [postman](https://www.postman.com/downloads/)
@@ -25,7 +29,11 @@ SELECT * FROM employee.EmployeeDetails;
 
 <img width="1143" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/eb73a058-f083-4145-ac52-67746c0498e6">
 
+
+
 # Testing the api using postman
+
+Note: There is a copy of collection in the Postman folder, in case you want to refer it 
 
 ### Create your first GET request
 
