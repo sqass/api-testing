@@ -15,6 +15,7 @@
 5. Click on create new connection
 4. Enter the details as shown in below screenshot with user as `user123` and password as `password1234`
 <img width="900" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/239c7f1f-087e-481c-9b58-fa568578099f">
+
 5. Click on test connection, the connection to the database should be successful.
 6. Double click on the newly created database
 7. Click on create new query session
