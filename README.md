@@ -8,18 +8,19 @@
 # Running the application
 
 1. Clone the repo [api-testing](https://github.com/sqass/api-testing.git)
-2. Go to root directory of the project from your terminal
-3. Run `docker-compose up` . You should see something like this
+2. Launch docker so that it's running on your machine in the background
+3. Go to root directory of the project from your terminal
+4. Run `docker-compose up` . You should see something like this
     <img width="1141" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/c9ec7f13-2616-4bc3-83c4-93e20d6451d4">
-4. Open mysql workbench
-5. Click on create new connection
-4. Enter the details as shown in below screenshot with user as `user123` and password as `password1234`
+5. Open mysql workbench
+6. Click on the + to create new connection
+7. Enter the details as shown in below screenshot with user as `user123` and password as `password1234`
 <img width="900" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/239c7f1f-087e-481c-9b58-fa568578099f">
 
-5. Click on test connection, the connection to the database should be successful.
-6. Double click on the newly created database
-7. Click on create new query session
-8. Run the below select query, should see a record on the table 
+8. Click on test connection, the connection to the database should be successful.
+9. Double click on the newly created database
+10. Click on create new query session
+11. Run the below select query - you should see a record in the table 
 ```sql
 SELECT * FROM employee.EmployeeDetails;
 ```
@@ -41,7 +42,7 @@ SELECT * FROM employee.EmployeeDetails;
 
 ### Create your first POST request 
 
-- Create a POST request to create new employee details, see the below screenshot for example
+- Create a POST request to create a new employee in the database.  See the below screenshot as an example:
 
 `RequestUrl` : http://127.0.0.1:7174/api/employee
 
@@ -52,7 +53,7 @@ SELECT * FROM employee.EmployeeDetails;
 {
     "EmployeeID": 2,
     "FirstName": "James",
-    "LastName": "sad",
+    "LastName": "Johnson",
     "Age": 30,
     "State": "MI"
 }
@@ -62,9 +63,9 @@ SELECT * FROM employee.EmployeeDetails;
 
 ### Create your first PUT request 
 
-Let's update the State of the newly created employee to `IL`. For this we need to create a PUT request request
+Let's update the State of the newly created employee to `IL`. For this we need to create a PUT request:
 
-`RequestUrl` : http://127.0.0.1:7174/api/employee/2`
+`RequestUrl` : http://127.0.0.1:7174/api/employee/2
 
 `HttpMethod`: PUT
 
@@ -73,7 +74,7 @@ Let's update the State of the newly created employee to `IL`. For this we need t
 {
     "EmployeeID": 2,
     "FirstName": "James",
-    "LastName": "sad",
+    "LastName": "Johnson",
     "Age": 30,
     "State": "IL"
 }
@@ -83,9 +84,9 @@ Let's update the State of the newly created employee to `IL`. For this we need t
 
 ### Create your first PATCH request 
 
-Let's update again the state of employee 2 from `IL` to `NY`. For this we will be using PATCH request.
+Let's update the state of employee 2 once again from `IL` to `NY`. This time, we will be using a PATCH request.
 
-You might be wondering, whats the difference between PUT and PATCH. In Patch request, we do not send entire request body details. We only send what are required
+You might be wondering, what's the difference between PUT and PATCH? In a PATCH request, we do not send the entire request body details...we only send what is changing
 
 `RequestUrl` : http://127.0.0.1:7174/api/employee/2
 
@@ -93,10 +94,6 @@ You might be wondering, whats the difference between PUT and PATCH. In Patch req
 request Body: 
 ```json
 {
-    "EmployeeID": 2,
-    "FirstName": "James",
-    "LastName": "sad",
-    "Age": 30,
     "State": "NY"
 }
 ```
@@ -104,7 +101,7 @@ request Body:
 
 ### Create your first DELETE request
 
-We can incur by the name, if you want to delete a record then we use DELETE request.
+We can infer by the name that if you want to delete a record then we would use a DELETE request.
 
 `RequestUrl` : http://127.0.0.1:7174/api/employee/2
 
@@ -114,9 +111,9 @@ We can incur by the name, if you want to delete a record then we use DELETE requ
 
 ### What are Request Parameters in postman ?
 
-Let's say in our example, we want to find the details of the employees who's state is `NJ`
+Let's say in our example, we want to find the details for any employees whose state is `NJ`
 
-For this we need to pass the state to the request, that's where request parameters will come in place.
+For this we need to pass the state to the request and that's where request parameters will come in place.
 
 `RequestUrl` : http://localhost:7174/api/employee/ByState
 
