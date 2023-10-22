@@ -5,3 +5,4 @@ employees/bin/*
 employees/obj/*
 .vscode/launch.json
 .vscode/tasks.json
+postman/newman/*

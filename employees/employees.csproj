@@ -19,5 +19,4 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="8.0.0-rc.1.23421.29" />
   </ItemGroup>
-
 </Project>

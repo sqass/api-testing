@@ -10,7 +10,10 @@ services:
       - "7174:80"
     depends_on:
       mysql: 
-        condition: service_healthy 
+        condition: service_healthy
+    networks:
+      - api_network  
+
   mysql:
     image: mysql:5.7
     restart: always
@@ -31,3 +34,19 @@ services:
       - '3306'
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - api_network    
+
+  postman:
+    image: dannydainton/htmlextra
+    command: run Employee.postman_collection.json -e employee-docker.postman_environment.json -r htmlextra
+    volumes:
+      - ./postman:/etc/newman
+    depends_on:
+      - webapi  
+    networks:
+      - api_network 
+
+
+networks:
+  api_network:  
