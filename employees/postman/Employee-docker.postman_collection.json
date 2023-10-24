@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "76854300-d909-45f9-8718-11171841bf99",
-		"name": "Employee",
+		"name": "Employee-docker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "3054781"
 	},
@@ -25,10 +25,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{hostname}}/api/employee/1",
+					"raw": "http://host.docker.internal:7174/api/employee/1",
+					"protocol": "http",
 					"host": [
-						"{{hostname}}"
+						"host",
+						"docker",
+						"internal"
 					],
+					"port": "7174",
 					"path": [
 						"api",
 						"employee",
@@ -57,10 +61,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{hostname}}/api/employee/ByState?state=NJ",
+					"raw": "http://host.docker.internal:7174/api/employee/ByState?state=NJ",
+					"protocol": "http",
 					"host": [
-						"{{hostname}}"
+						"host",
+						"docker",
+						"internal"
 					],
+					"port": "7174",
 					"path": [
 						"api",
 						"employee",
