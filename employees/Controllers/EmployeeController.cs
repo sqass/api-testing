@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +40,7 @@ public class EmployeeController : ControllerBase
 
     // POST: api/Employee
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
     {
         _context.EmployeeDetails.Add(employee);
@@ -49,6 +51,7 @@ public class EmployeeController : ControllerBase
 
     // PUT: api/Employee/5
     [HttpPut("{id}")]
+     [Authorize]
     public async Task<IActionResult> PutEmployee(int id, Employee employee)
     {
         if (id != employee.EmployeeID)
@@ -78,6 +81,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPatch("{id}")]
+     [Authorize]
     public async Task<IActionResult> PatchEmployee(int id, [FromBody] NewCity newCity)
     {
         if (string.IsNullOrEmpty(newCity.State))
@@ -114,6 +118,7 @@ public class EmployeeController : ControllerBase
 
     // DELETE: api/Employee/5
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> DeleteEmployee(int id)
     {
         var employee = await _context.EmployeeDetails.FindAsync(id);
