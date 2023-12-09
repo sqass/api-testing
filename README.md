@@ -41,6 +41,8 @@ SELECT * FROM employee.EmployeeDetails;
 
 ### Create your first POST request 
 
+[Refer to authorization section how to authorize endpoint](###Authorization)
+
 - Create a POST request to create new employee details, see the below screenshot for example
 
 `RequestUrl` : http://127.0.0.1:7174/api/employee
@@ -61,6 +63,8 @@ SELECT * FROM employee.EmployeeDetails;
 
 
 ### Create your first PUT request 
+
+[Refer to authorization section how to authorize endpoint](###Authorization)
 
 Let's update the State of the newly created employee to `IL`. For this we need to create a PUT request request
 
@@ -83,6 +87,8 @@ Let's update the State of the newly created employee to `IL`. For this we need t
 
 ### Create your first PATCH request 
 
+[Refer to authorization section how to authorize endpoint](###Authorization)
+
 Let's update again the state of employee 2 from `IL` to `NY`. For this we will be using PATCH request.
 
 You might be wondering, whats the difference between PUT and PATCH. In Patch request, we do not send entire request body details. We only send what are required
@@ -103,6 +109,8 @@ request Body:
 <img width="1297" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/c34795f0-fdcc-44f8-9c74-1f9c45003453">
 
 ### Create your first DELETE request
+
+[Refer to authorization section how to authorize endpoint](###Authorization)
 
 We can incur by the name, if you want to delete a record then we use DELETE request.
 
@@ -125,3 +133,27 @@ For this we need to pass the state to the request, that's where request paramete
 `HttpMethod` : GET
 
 <img width="1301" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/95bdd032-69e4-4ef7-8814-593ca387e390">
+
+
+
+
+### Authorization
+
+In order create, update or delete employee details, we need to get a bearer token and add to the header.
+
+This would also help you to understand how we can test an authorization to the endpoint.
+
+To get the bearer token , hit the endpoint `http://localhost:7174/api/auth` with the below request body
+
+```json
+{
+    "username" : "random@gmail.com",
+    "password" : "strongpassword"
+}
+``` 
+
+<img width="1254" alt="image" src="https://github.com/bhargavjulaganti/LearningCypress/assets/11901773/4c8afb12-02ae-47c6-a57b-f9bc782ef4b3">
+
+Add the token as bearer header for the POST/PUT/DELETE endpoint as shown below
+
+<img width="1304" alt="image" src="https://github.com/bhargavjulaganti/LearningCypress/assets/11901773/9d797d79-bd9b-454d-bd09-d73a452f8b8a">
