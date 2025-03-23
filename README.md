@@ -28,6 +28,44 @@ SELECT * FROM employee.EmployeeDetails;
 
 # Testing the api using postman
 
+### What are Request Parameters in postman ?
+
+Let's say we want to find the details of the employees whose state is `NJ`
+
+For this we need to pass the state to the request, that's where request parameters will come into play.
+
+`RequestUrl` : http://localhost:7174/api/employee/ByState
+
+`RequestParams` : state
+
+`HttpMethod` : GET
+
+<img width="1301" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/95bdd032-69e4-4ef7-8814-593ca387e390">
+
+
+
+
+### Authorization
+
+In order create, update or delete employee details, we need to get a bearer token and add to the header.
+
+This would also help you to understand how we can test an authorization to the endpoint.
+
+To get the bearer token , hit the endpoint `http://localhost:7174/api/auth` with the below request body
+
+```json
+{
+    "username" : "random@gmail.com",
+    "password" : "strongpassword"
+}
+``` 
+
+<img width="1254" alt="image" src="https://github.com/bhargavjulaganti/LearningCypress/assets/11901773/4c8afb12-02ae-47c6-a57b-f9bc782ef4b3">
+
+Add the token as bearer header for the POST/PUT/DELETE endpoint as shown below
+
+<img width="1304" alt="image" src="https://github.com/bhargavjulaganti/LearningCypress/assets/11901773/9d797d79-bd9b-454d-bd09-d73a452f8b8a">
+
 ### Create your first GET request
 
 - Create a GET srequest to read the details of EmployeeId `1`
@@ -120,40 +158,3 @@ We can incur by the name, if you want to delete a record then we use DELETE requ
 
 <img width="1313" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/78bedab9-6239-4f25-9a1b-a9fe10d921e2">
 
-### What are Request Parameters in postman ?
-
-Let's say in our example, we want to find the details of the employees who's state is `NJ`
-
-For this we need to pass the state to the request, that's where request parameters will come in place.
-
-`RequestUrl` : http://localhost:7174/api/employee/ByState
-
-`RequestParams` : State
-
-`HttpMethod` : GET
-
-<img width="1301" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/95bdd032-69e4-4ef7-8814-593ca387e390">
-
-
-
-
-### Authorization
-
-In order create, update or delete employee details, we need to get a bearer token and add to the header.
-
-This would also help you to understand how we can test an authorization to the endpoint.
-
-To get the bearer token , hit the endpoint `http://localhost:7174/api/auth` with the below request body
-
-```json
-{
-    "username" : "random@gmail.com",
-    "password" : "strongpassword"
-}
-``` 
-
-<img width="1254" alt="image" src="https://github.com/bhargavjulaganti/LearningCypress/assets/11901773/4c8afb12-02ae-47c6-a57b-f9bc782ef4b3">
-
-Add the token as bearer header for the POST/PUT/DELETE endpoint as shown below
-
-<img width="1304" alt="image" src="https://github.com/bhargavjulaganti/LearningCypress/assets/11901773/9d797d79-bd9b-454d-bd09-d73a452f8b8a">
