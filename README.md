@@ -8,7 +8,7 @@
 # Running the application
 
 1. Clone the repo [api-testing](https://github.com/sqass/api-testing.git)
-2. Go to root directory of the project from your terminal
+2. Go to the root directory of the project from your terminal
 3. Run `docker-compose up` . You should see something like this
     <img width="1141" alt="image" src="https://github.com/sqass/api-testing/assets/142704021/c9ec7f13-2616-4bc3-83c4-93e20d6451d4">
 4. Open mysql workbench
@@ -104,7 +104,7 @@ Add the token as bearer header for the POST/PUT/DELETE endpoint as shown below
 
 [Refer to authorization section how to authorize endpoint](###Authorization)
 
-Let's update the State of the newly created employee to `IL`. For this we need to create a PUT request request
+Let's update the State of the newly created employee to `IL`. For this we need to create a PUT request
 
 `RequestUrl` : http://127.0.0.1:7174/api/employee/2`
 
@@ -127,9 +127,9 @@ Let's update the State of the newly created employee to `IL`. For this we need t
 
 [Refer to authorization section how to authorize endpoint](###Authorization)
 
-Let's update again the state of employee 2 from `IL` to `NY`. For this we will be using PATCH request.
+Let's update employee 2 again, changing their state from `IL` to `NY`. For this we will be using a PATCH request.
 
-You might be wondering, whats the difference between PUT and PATCH. In Patch request, we do not send entire request body details. We only send what are required
+You might be wondering, what's the difference between PUT and PATCH? In a PATCH request, we do not send the entire request body details. We only send what is changing.
 
 `RequestUrl` : http://127.0.0.1:7174/api/employee/2
 
@@ -137,10 +137,6 @@ You might be wondering, whats the difference between PUT and PATCH. In Patch req
 request Body: 
 ```json
 {
-    "EmployeeID": 2,
-    "FirstName": "James",
-    "LastName": "sad",
-    "Age": 30,
     "State": "NY"
 }
 ```
